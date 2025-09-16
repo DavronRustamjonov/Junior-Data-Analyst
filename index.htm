@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Junior Data Analyst — Portfolio</title>
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <!-- PapaParse for CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+
+  <!-- Main script -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="nav-container">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#live-demo">Live Demo</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+ <!-- HERO -->
+  <header class="hero">
+    <div><img style="border-radius: 50%;" src="./pic/mememe.jpg" alt="me pic"></div>
+    <div class="hero-inner">
+      <h1><span class="accent">Davron Rustamjonov</span></h1>
+      <p class="lead" >Junior Data Analyst — Turning messy data into clear insights. SQL • Python • Excel • Visualization</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#projects">View Projects</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+      </div>
+      <div class="hero-meta">
+        <a id="githubLink" href="#" target="_blank">GitHub</a> •
+        <a id="linkedinLink" href="#" target="_blank">LinkedIn</a> •
+        <a id="resumeLink" href="https://docs.google.com/document/d/1zX_RCgbx5G2S4WU5EvZDCsyuc9x_rViGo3RrXQQNf58/edit?usp=sharing" target="_blank">Resume</a>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <!-- ABOUT -->
+    <section id="about" class="card">
+      <h2>About me</h2>
+      <p>Creative and curious junior data analyst with hands-on experience in cleaning datasets, building dashboards, running basic A/B tests, and communicating findings. I enjoy combining rigorous analysis with polished visuals so stakeholders can act.</p>
+      <ul class="meta-list">
+        <li><strong>Location:</strong> Tashkent, Uzbekistan</li>
+        <li><strong>Role:</strong> Junior Data Analyst / Entry-level Data Engineer</li>
+        <li><strong>Tools:</strong> Python (pandas), SQL, Excel, Chart.js, Tableau, Git</li>
+      </ul>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card">
+      <h2>Selected Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Sales Dashboard — Interactive</h3>
+          <p>Processed monthly sales CSV, computed KPIs, and showed categories with interactive filters and charts.</p>
+          <div class="project-actions">
+            <button class="mini-btn" data-demo="sales">Open Demo</button>
+            <a class="mini-link" href="#" target="_blank">Code (GitHub)</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>Customer Segmentation (RFM)</h3>
+          <p>Performed RFM scoring and visualised clusters. Includes a downloadable notebook and static cluster preview.</p>
+          <div class="project-actions">
+            <button class="mini-btn" data-demo="seg">Open Preview</button>
+            <a class="mini-link" href="#" target="_blank">Write-up</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <h3>A/B Test Analysis</h3>
+          <p>Computed conversion uplift, confidence intervals and business impact. Clean, reproducible calculations.</p>
+          <div class="project-actions">
+            <button class="mini-btn" data-demo="ab">View Summary</button>
+            <a class="mini-link" href="#" target="_blank">Notebook</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- LIVE DEMO: upload CSV, see KPIs & charts -->
+    <section id="live-demo" class="card">
+      <h2>Live Data Demo — Upload CSV</h2>
+      <p>Upload a CSV file with columns like <code>date, category, sales, orders, customer_id</code> — or use the sample data button. The dashboard will compute KPIs and render charts.</p>
+
+      <div class="upload-row">
+        <input type="file" id="csvFile" accept=".csv" />
+        <button id="useSample" class="btn ghost">Use Sample Data</button>
+        <button id="downloadCsv" class="btn hidden">Download Clean CSV</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-title">Total Sales</div>
+          <div id="kpiTotal" class="kpi-value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Avg Order</div>
+          <div id="kpiAvg" class="kpi-value">—</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Unique Customers</div>
+          <div id="kpiCust" class="kpi-value">—</div>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <label>Category filter:
+          <select id="categoryFilter"><option value="__all__">All categories</option></select>
+        </label>
+        <label>Date range:
+          <input type="date" id="dateFrom" /> — <input type="date" id="dateTo" />
+        </label>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card">
+          <h4>Sales by Category</h4>
+          <canvas id="chartCategory"></canvas>
+        </div>
+        <div class="chart-card">
+          <h4>Sales over Time</h4>
+          <canvas id="chartTime"></canvas>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <h4>Data Preview</h4>
+        <div id="tableContainer" class="table-scroll"></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card">
+      <h2>Skills & Tools</h2>
+      <div class="skills-grid">
+        <div class="skill">Python (pandas)</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Excel / Power Query</div>
+        <div class="skill">Charting & Dashboards</div>
+        <div class="skill">Data Cleaning</div>
+        <div class="skill">Statistics & A/B Testing</div>
+        <div class="skill">Git / GitHub</div>
+        <div class="skill">Presentation & Storytelling</div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Want to collaborate or see more of my work? Send a short message.</p>
+      <form id="contactForm" class="contact-form">
+        <input name="name" placeholder="Your name" required />
+        <input name="email" type="email" placeholder="Your email" required />
+        <textarea name="message" rows="4" placeholder="A short message" required></textarea>
+        <div class="form-row">
+          <button type="submit" class="btn">Send Message</button>
+          <a class="btn ghost" href="#" id="downloadResume">Download Resume</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Davron Rustamjonov — Junior Data Analyst</div>
+      <div> <a href="https://t.me/datasfera" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
+    </a></div>
+    </div>
+  </footer>
+
+  <!-- Small modal for quick project info -->
+  <div id="miniModal" class="modal hidden">
+    <div class="modal-inner">
+      <button class="close">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</body>
+</html>
