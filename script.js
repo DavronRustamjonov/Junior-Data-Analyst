@@ -339,8 +339,10 @@
     const email = this.email.value;
     const message = this.message.value;
   
-    const telegramToken = "8321663158:AAGXp6315KX7iRsyjt6omyyuN4HIX6mUtcQ"; // BotFather bergan token
-    const chatId = "6628054450"; 
+    require('dotenv').config();
+
+const telegramToken = process.env.TELEGRAM_TOKEN;
+const chatId = process.env.CHAT_ID;
     const text = `📩 Yangi xabar!\n\n👤 Ism: ${name}\n📧 Email: ${email}\n💬 Xabar: ${message}`;
   
     fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
