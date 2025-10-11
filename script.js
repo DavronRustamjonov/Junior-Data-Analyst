@@ -331,7 +331,7 @@
     }
   
   })();
-
+  
   document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
   
@@ -339,33 +339,24 @@
     const email = this.email.value;
     const message = this.message.value;
   
-    require('dotenv').config();
-
-const telegramToken = process.env.TELEGRAM_TOKEN;
-const chatId = process.env.CHAT_ID;
-    const text = `📩 Yangi xabar!\n\n👤 Ism: ${name}\n📧 Email: ${email}\n💬 Xabar: ${message}`;
-  
-    fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+    fetch("/.netlify/functions/sendMessage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: text,
-        parse_mode: "HTML"
-      })
+      body: JSON.stringify({ name, email, message })
     })
     .then(res => res.json())
     .then(data => {
       if (data.ok) {
-        alert("Xabaringiz yuborildi! ✅");
+        alert("✅ Your message has been sent!");
         this.reset();
       } else {
-        alert("Xabar yuborishda xatolik ❌");
+        alert("❌ Failed to send message.");
       }
     })
     .catch(err => {
-      console.error(err);
-      alert("Server bilan aloqa xatosi ❌");
+      console.error("❌ Error:", err);
+      alert("❌ Server connection error.");
     });
   });
+  
   
