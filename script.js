@@ -218,28 +218,32 @@
     });
   }
   
-  /* ========== TABLE PREVIEW ========== */
-  function renderTable(rows) {
-    if (!rows || rows.length === 0) {
-      tableContainer.innerHTML = '<div class="muted">No rows to show.</div>';
-      return;
-    }
-  
-    const cols = Object.keys(rows[0]);
-    const html = [];
-    html.push('<table class="data-table"><thead><tr>');
-    cols.forEach(c => html.push(`<th>${escapeHtml(c)}</th>`));
-    html.push('</tr></thead><tbody>');
-  
-    rows.forEach(r => {
-      html.push('<tr>');
-      cols.forEach(c => html.push(`<td>${escapeHtml(String(r[c] ?? ''))}</td>`));
-      html.push('</tr>');
-    });
-  
-    html.push('</tbody></table>');
-    tableContainer.innerHTML = html.join('');
+  /* ========== TABLE PREVIEW (First 5 rows only) ========== */
+function renderTable(rows) {
+  if (!rows || rows.length === 0) {
+    tableContainer.innerHTML = '<div class="muted">No rows to show.</div>';
+    return;
   }
+
+  // Faqat dastlabki 5 ta qatorni olish
+  const previewRows = rows.slice(0, 5);
+
+  const cols = Object.keys(previewRows[0]);
+  const html = [];
+  html.push('<table class="data-table"><thead><tr>');
+  cols.forEach(c => html.push(`<th>${escapeHtml(c)}</th>`));
+  html.push('</tr></thead><tbody>');
+
+  previewRows.forEach(r => {
+    html.push('<tr>');
+    cols.forEach(c => html.push(`<td>${escapeHtml(String(r[c] ?? ''))}</td>`));
+    html.push('</tr>');
+  });
+
+  html.push('</tbody></table>');
+  tableContainer.innerHTML = html.join('');
+}
+
   
   /* ========== SAMPLE DATA ========== */
 
@@ -402,7 +406,7 @@
     a.remove();
     URL.revokeObjectURL(url);
   }
-
+  // tableContainer
   /* ========== MODAL / PROJECT DEMO ========== */
 
   function openModalDemo(demo) {
@@ -480,6 +484,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     alert("❌ Server connection error.");
   });
 });
+
 
 
 
