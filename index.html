@@ -28,23 +28,25 @@
       <a href="#contact">Contact</a>
     </div>
   </nav>
- <!-- HERO -->
+
+  <!-- HERO -->
   <header class="hero">
     <div><img style="border-radius: 50%;" src="./pic/mememe.jpg" alt="me pic"></div>
     <div class="hero-inner">
       <h1><span class="accent">Davron Rustamjonov</span></h1>
-      <p class="lead" >Junior Data Analyst — Turning messy data into clear insights. SQL • Python • Excel • Visualization</p>
+      <p class="lead">Junior Data Analyst — Turning messy data into clear insights. SQL • Python • Excel • Visualization</p>
       <div class="hero-ctas">
         <a class="btn" href="#projects">View Projects</a>
         <a class="btn ghost" href="#contact">Contact</a>
       </div>
       <div class="hero-meta">
-        <a id="githubLink" href="https://github.com/DavronRustamjonov" target="_blank">GitHub</a> •
-        <a id="linkedinLink" href="https://www.linkedin.com/in/davron-rustamjonov-898928320/" target="_blank">LinkedIn</a> •
-        <a id="resumeLink" href="https://docs.google.com/document/d/1zX_RCgbx5G2S4WU5EvZDCsyuc9x_rViGo3RrXQQNf58/edit?usp=sharing" target="_blank">Resume</a>
+        <a href="https://github.com/DavronRustamjonov" target="_blank">GitHub</a> •
+        <a href="https://www.linkedin.com/in/davron-rustamjonov-898928320/" target="_blank">LinkedIn</a> •
+        <a href="https://docs.google.com/document/d/1zX_RCgbx5G2S4WU5EvZDCsyuc9x_rViGo3RrXQQNf58/edit?usp=sharing" target="_blank">Resume</a>
       </div>
     </div>
   </header>
+
   <main class="container">
     <!-- ABOUT -->
     <section id="about" class="card">
@@ -90,7 +92,7 @@
       </div>
     </section>
 
-    <!-- LIVE DEMO: upload CSV, see KPIs & charts -->
+    <!-- LIVE DEMO -->
     <section id="live-demo" class="card">
       <h2>Live Data Demo — Upload CSV</h2>
       <p>Upload a CSV file with columns like <code>date, category, sales, orders, customer_id</code> — or use the sample data button. The dashboard will compute KPIs and render charts.</p>
@@ -156,13 +158,16 @@
         <div class="skill">Presentation & Storytelling</div>
       </div>
     </section>
+
     <!-- CONTACT -->
     <section id="contact" class="card">
       <h2>Contact</h2>
       <p>Want to collaborate or see more of my work? Send a short message.</p>
       <form id="contactForm" class="contact-form">
-        <input name="name" placeholder="Your name" required />
-        <input name="email" type="email" placeholder="Your email" required />
+        <div class="form-group">
+          <input name="name" placeholder="Your name" required />
+          <input name="email" type="email" placeholder="Your email" required />
+        </div>
         <textarea name="message" rows="4" placeholder="A short message" required></textarea>
         <div class="form-row">
           <button type="submit" class="btn">Send Message</button>
@@ -170,23 +175,28 @@
         </div>
       </form>
     </section>
+    
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Davron Rustamjonov — Junior Data Analyst</div>
-      <div> <a href="https://t.me/davron_rustamjonov" target="_blank">
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="footer-text">© <span id="year"></span> Davron Rustamjonov — Junior Data Analyst</div>
+    <div class="footer-social">
+      <a href="https://t.me/davron_rustamjonov" target="_blank" aria-label="Telegram">
         <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram" class="telegram-icon">
-    </a></div>
-    </div>
-  </footer>
-
-  <!-- Small modal for quick project info -->
-  <div id="miniModal" class="modal hidden">
-    <div class="modal-inner">
-      <button class="close">&times;</button>
-      <div id="modalContent"></div>
+      </a>
     </div>
   </div>
+</footer>
+
+<!-- Small modal for quick project info -->
+<div id="miniModal" class="modal hidden">
+  <div class="modal-inner">
+    <button class="close">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 </body>
 </html>
